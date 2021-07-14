@@ -29,7 +29,6 @@ stdenv.mkDerivation rec {
   installPhase = ''
     mkdir -p $out
     cp -r * $out
-    ln -s $out/share/man $out/man
   '';
 
   preFixup = ''
