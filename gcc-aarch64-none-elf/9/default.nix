@@ -29,7 +29,7 @@ stdenv.mkDerivation rec {
   installPhase = ''
     mkdir -p $out
     cp -r * $out
-    ln -s $out/share/doc/gcc-arm-none-eabi/man $out/man
+    ln -s $out/share/man $out/man
   '';
 
   preFixup = ''

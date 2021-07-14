@@ -6,18 +6,18 @@
 }:
 
 stdenv.mkDerivation rec {
-  pname = "gcc-aarch64-none-linux";
-  version = "9.2-2019.12";
-  subdir = "9.2-2019.12";
+  pname = "gcc-aarch64-none-elf";
+  version = "10.2-2020.11";
+  subdir = "10.2-2020.11";
 
   suffix = {
     x86_64-linux  = "x86_64";
   }.${stdenv.hostPlatform.system} or (throw "Unsupported system: ${stdenv.hostPlatform.system}");
 
   src = fetchurl {
-    url = "https://developer.arm.com/-/media/Files/downloads/gnu-a/${subdir}/binrel/gcc-arm-${version}-${suffix}-aarch64-none-linux-gnu.tar.xz";
+    url = "https://developer.arm.com/-/media/Files/downloads/gnu-a/${subdir}/binrel/gcc-arm-${version}-${suffix}-aarch64-none-elf.tar.xz";
     sha256 = {
-      x86_64-linux  = "sha256-jf5oFTHwvQT7nFPPPAozaMYWqoXUiTjuvitRY3bgamY=";
+      x86_64-linux  = "sha256-Mqv7x7JMVlQvKm5pada4eH5H9yI+jyCX2EFR69n4Z0M=";
     }.${stdenv.hostPlatform.system} or (throw "Unsupported system: ${stdenv.hostPlatform.system}");
   };
 
@@ -29,7 +29,7 @@ stdenv.mkDerivation rec {
   installPhase = ''
     mkdir -p $out
     cp -r * $out
-    ln -s $out/share/man $out/man
+    ln -s $out/man $out/man
   '';
 
   preFixup = ''
@@ -41,7 +41,7 @@ stdenv.mkDerivation rec {
   '';
 
   meta = with lib; {
-    description = "Pre-built GNU toolchain from ARM Cortex-A processors, linux target";
+    description = "Pre-built GNU toolchain from ARM Cortex-A processors";
     homepage = "https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-a";
     platforms = [ "x86_64-linux" ];
   };
